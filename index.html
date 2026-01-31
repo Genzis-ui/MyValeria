@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valeria ❤️</title>
+
+<style>
+:root{
+  --crimson:#4a000e; /* Deeper purple-tinted crimson */
+  --royal-blue: #4169e1;
+  --light:#ffd6dc;
+  --glass:rgba(255,255,255,0.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif}
+
+body{
+  height:100vh;
+  /* Dark Purple Background as requested */
+  background: radial-gradient(circle at center, #1a0b2e 0%, #0d0514 100%);
+  overflow:hidden;
+  color:white;
+}
+
+.container{
+  height:100vh;
+  display:flex;
+  transition:transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page{
+  min-width:100vw;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.card{
+  width:90%;
+  max-width:420px;
+  padding:40px;
+  background:var(--glass);
+  backdrop-filter:blur(25px);
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.1);
+  text-align:center;
+  box-shadow:0 25px 50px rgba(0,0,0,.6);
+  z-index:5;
+}
+
+h1{
+    color:var(--light);
+    margin-bottom:15px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+.royal-text {
+    color: var(--royal-blue);
+    font-weight: bold;
+    font-style: italic;
+}
+
+p{line-height:1.8;opacity:.9; font-weight: 300; letter-spacing: 0.5px;}
+
+.btn{
+  margin-top:30px;
+  padding:12px 35px;
+  border:none;
+  border-radius:999px;
+  background: linear-gradient(135deg, var(--royal-blue), #1e3c72);
+  color:white;
+  font-size:0.9rem;
+  cursor:pointer;
+  transition: 0.3s;
+}
+
+/* Teddy Bears Zone */
+.teddy-container {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+    font-size: 4rem;
+    z-index: 2;
+}
+
+.teddy-black { filter: brightness(0.3); animation: sway 3s infinite ease-in-out; }
+.teddy-brown { filter: sepia(0.5) saturate(2); animation: sway 3s infinite ease-in-out reverse; }
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-10deg) translateY(0); }
+    50% { transform: rotate(10deg) translateY(-10px); }
+}
+
+/* Shooting Hearts from Teddies */
+.shooting-heart {
+  position: absolute;
+  color: #ff4b6e;
+  font-size: 20px;
+  pointer-events: none;
+  animation: shootUp 3s ease-out forwards;
+}
+
+@keyframes shootUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(var(--x)) scale(1.5); opacity: 0; }
+}
+
+/* Water bubbles */
+.bubble {
+  position:absolute;
+  bottom:-40px;
+  background:rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius:50%;
+  animation:bubbleUp linear forwards;
+}
+
+@keyframes bubbleUp{
+  to{transform:translateY(-120vh);opacity:0}
+}
+
+.letter{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 1.5s ease;
+}
+.letter.open{max-height:800px}
+
+.love-btn{
+  margin-top:20px;
+  padding:16px 38px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,#ff4b6e, var(--crimson));
+  color:white;
+  cursor:pointer;
+}
+
+.burst{
+  position:absolute;
+  font-size:22px;
+  animation:burst 1s ease forwards;
+}
+@keyframes burst{
+  to{ transform:translate(var(--x),var(--y)) scale(2); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="https://www.mfiles.co.uk/mp3-downloads/chopin-nocturne-op9-no2.mp3" type="audio/mpeg">
+</audio>
+
+<div class="teddy-container" id="teddyZone" style="display:none;">
+    <div class="teddy-black">🧸</div>
+    <div class="teddy-brown">🧸</div>
+</div>
+
+<div class="container" id="container">
+
+<section class="page">
+  <div class="card">
+    <h1 class="royal-text">1 Year of Us 💍</h1>
+    <p>
+      Valeria, 365 days haven't been enough to show you how much you mean to me. 
+      Every second spent loving you has been a blessing from above.
+    </p>
+    <button class="btn" onclick="startJourney()">Enter Our World →</button>
+  </div>
+</section>
+
+<section class="page">
+  <div class="card">
+    <h1>Beauty & Grace ✨</h1>
+    <p>
+      Your <span class="royal-text">eyes</span> are where I find my peace, and your 
+      <span class="royal-text">juicy waist</span> moves with a confidence that 
+      is pure poetry. You are a masterpiece.
+    </p>
+    <button class="btn" onclick="next()">Next →</button>
+  </div>
+</section>
+
+<section class="page">
+  <div class="card">
+    <h1>Spirit & Purity 🙏</h1>
+    <p>
+      I admire your <span class="royal-text">fiery spirit</span> and your 
+      unwavering responsibility. Your purity in the Lord is what makes 
+      you the most beautiful woman I know.
+    </p>
+    <button class="btn" onclick="openLetter()">Read My Heart 💌</button>
+
+    <div class="letter" id="letter">
+      <p style="margin-top:20px; font-style: italic; font-size: 0.95rem;">
+        Valeria, you are my home. Thank you for being my peace, my partner, 
+        and my greatest love. I promise to cherish you forever.
+      </p>
+      <button class="love-btn" onclick="endLove(event)">I love you ❤️</button>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+let page=0;
+const container=document.getElementById("container");
+const music=document.getElementById("bgMusic");
+let musicStarted=false;
+
+function startJourney(){
+  if(!musicStarted){
+    music.volume = 0;
+    music.play();
+    document.getElementById("teddyZone").style.display = "flex";
+    
+    // Smooth Fade In
+    let v=0;
+    const fadeIn=setInterval(()=>{
+      if(v<0.4){
+        v+=0.01;
+        music.volume=v;
+      }else{
+        clearInterval(fadeIn);
+      }
+    },150);
+    
+    musicStarted=true;
+    startHeartShooter();
+  }
+  next();
+}
+
+function next(){
+  page++;
+  container.style.transform=`translateX(-${page*100}vw)`;
+}
+
+/* 4 Hearts every 2 seconds from Teddies */
+function startHeartShooter() {
+    setInterval(() => {
+        for(let i=0; i<4; i++) {
+            setTimeout(() => {
+                const h = document.createElement("div");
+                h.className = "shooting-heart";
+                h.textContent = "❤️";
+                // Alternate between left (black teddy) and right (brown teddy)
+                h.style.left = (i % 2 === 0) ? "15vw" : "80vw";
+                h.style.bottom = "80px";
+                h.style.setProperty('--x', (Math.random()*100 - 50) + "px");
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 3000);
+            }, i * 400);
+        }
+    }, 2000);
+}
+
+/* Water bubbles */
+setInterval(()=>{
+  const b=document.createElement("div");
+  b.className="bubble";
+  const s=10+Math.random()*25;
+  b.style.width=s+"px";
+  b.style.height=s+"px";
+  b.style.left=Math.random()*100+"vw";
+  b.style.animationDuration=7+Math.random()*5+"s";
+  document.body.appendChild(b);
+  setTimeout(()=>b.remove(),12000);
+},800);
+
+function openLetter(){
+  document.getElementById("letter").classList.add("open");
+}
+
+function endLove(e){
+  // Explosion effect
+  for(let i=0;i<30;i++){
+    const b=document.createElement("div");
+    b.className="burst";
+    b.textContent="❤";
+    b.style.left=e.clientX+"px";
+    b.style.top=e.clientY+"px";
+    b.style.setProperty("--x",(Math.random()*300-150)+"px");
+    b.style.setProperty("--y",(Math.random()*-300)+"px");
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),1000);
+  }
+  
+  // Confetti
+  confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+}
+</script>
+
+</body>
+</html>
